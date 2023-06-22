@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import NoteSheet from "./components/NoteSheet";
 import Midi from "./components/Midi";
 import Timer from "./components/Timer";
+import Keyboard from "./components/Keyboard";
 
 // const notes_all = Array(128)
 //   .fill(0)
@@ -42,14 +43,12 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [index, setIndex] = useState([0, 1, 2, 3]);
   const [input, setInput] = useState("");
+  const [startTime, setStartTime] = useState("");
   const [start, setStart] = useState("");
   const [stop, setStop] = useState(false);
-  const [newGame, setNesGame] = useState(false);
-
-  // Set the date we're counting down to
-  // let s = 0 + "m " + 0 + "s " + 0 + "c";
-
-  // let times = [];
+  const [newGame, setNewGame] = useState(false);
+  const [animationClass, setAnimationClass] = useState("");
+  const [showDiv, setShowDiv] = useState(false);
 
   useEffect(() => {
     const notes_all = Array(128)
@@ -59,7 +58,7 @@ function App() {
 
     let initial_notes = [];
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 1; i++) {
       if (i === 0) {
         initial_notes.push(
           sliced_notes[Math.floor(Math.random() * sliced_notes.length)]
@@ -96,11 +95,38 @@ function App() {
     }
   };
 
+  const handleAnimationEnd = () => {
+    if (start) {
+      setShowDiv(true);
+
+      setTimeout(() => {
+        setStartTime(Date.now());
+      }, 200);
+    }
+
+    // if (start) {
+    //   setShowDiv(true);
+    //   setAnimationClass("");
+    //   console.log(
+    //     `setShowDiv to true: ${Date.now()} stop: ${stop ? "1" : "0"}`
+    //   );
+    // }
+  };
+
+  // useEffect(() => {
+  //   if (start) {
+  //     setAnimationClass("outAnimation");
+  //     console.log(`setAnimationClass to outAnimation: ${Date.now()}`);
+  //   }
+  // }, [start]);
+
   useEffect(() => {
     if (input === notes[0]) {
-      // times.push(Date.now() - start);
+      console.log(input);
       if (notes.length === 1) {
         setStop(true);
+
+        setAnimationClass("");
       }
       console.log(Date.now() - start);
       setIndex((prevIndex) => {
@@ -126,56 +152,74 @@ function App() {
       setInput(" ");
     }, 300);
   }, [input, notes, start]);
-  const inputRef = useRef();
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-    if (start) {
-      setInput(+inputRef.current.value);
-    }
-  };
+  // const inputRef = useRef();
+  // const submitHandler = (event) => {
+  //   event.preventDefault();
+  //   if (start) {
+  //     setInput(+inputRef.current.value);
+  //   }
+  // };
+
   const timerStart = () => {
+    setAnimationClass("outAnimation");
     setStop(false);
-    setStart(Date.now());
+    setStart(true);
+
+    console.log(`timerStart: ${Date.now()}`);
   };
 
   const playAgain = () => {
-    setNesGame((prevNewGame) => {
+    setNewGame((prevNewGame) => {
       return !prevNewGame;
     });
-    setStop(false);
-    setStart(Date.now());
+    timerStart();
   };
   // const timerStop = () => {
   //   setStop(true);
   // };
+  const keyboardInputHandler = (inputs) => {
+    console.log(inputs);
+    if (start) {
+      console.log(inputs.filter((item) => item === notes[0]));
+      setInput(inputs.filter((item) => item === notes[0])[0]);
+    }
+  };
 
   return (
     <div>
-      <Timer start={start} stop={stop} />
+      <Timer start={startTime} stop={stop} />
       <div className="big-container">
-        {start && !stop && (
-          <Fragment>
+        {showDiv && !stop && (
+          <div className="note-container">
             <div>
               {/* <img className="joint" src="Accolade_fermante.png" alt="Accolade" /> */}
             </div>
             <NoteSheet input={input} clef={"g"} notes={notes} index={index} />
             {/* <NoteSheet clef={"f"} notes={notes} index={index} /> */}
-          </Fragment>
+          </div>
         )}
-        {!start && (
-          <button className="start-btn" onClick={timerStart}>
+        {!showDiv && (
+          <button
+            className={`start-btn ${animationClass}`}
+            onClick={timerStart}
+            onTransitionEnd={handleAnimationEnd}
+          >
             Start!
           </button>
         )}
         {stop && (
-          <button className="start-btn" onClick={playAgain}>
+          <button
+            className={`start-btn ${animationClass}`}
+            onClick={playAgain}
+            onTransitionEnd={handleAnimationEnd}
+          >
             PLAY AGAIN
           </button>
         )}
       </div>
 
-      <div>{notes}</div>
+      {/* <div>{notes}</div>
       <form onSubmit={submitHandler}>
         <input
           type="number"
@@ -185,68 +229,15 @@ function App() {
           ref={inputRef}
         />
         <button type="submit">Enter Note</button>
-      </form>
+      </form> */}
 
       {/* <button onClick={timerStop}>Stop</button> */}
 
       {/* {input && <Input input={input} />} */}
+      <Keyboard inputsKeyboard={keyboardInputHandler} />
       <Midi onMIDISuccess={handleInput} />
     </div>
   );
 }
 
 export default App;
-
-// const handleInput = (input) => {
-//   if (input === notes[0]) {
-//     setIndex((prevIndex) => {
-//       let g = [];
-//       let y = [...prevIndex];
-//       for (const i in y) {
-//         if (i === "0") {
-//           g.push(y.slice(-1)[0]);
-//         } else {
-//           g.push(y[i - 1]);
-//         }
-//       }
-//       console.log(g);
-//       return g;
-//     });
-//     setNotes((prevNote) => {
-//       const a = [...prevNote];
-//       a.shift();
-//       console.log(a);
-//       return a;
-//     });
-//   } else {
-//     console.log(input);
-//     setWrongInput(input);
-//   }
-// };
-
-// useEffect(() => {
-//   if (input === notes[0]) {
-//     setIndex((prevIndex) => {
-//       let g = [];
-//       let y = [...prevIndex];
-//       for (const i in y) {
-//         if (i === "0") {
-//           g.push(y.slice(-1)[0]);
-//         } else {
-//           g.push(y[i - 1]);
-//         }
-//       }
-//       console.log(g);
-//       return g;
-//     });
-//     setNotes((prevNote) => {
-//       const a = [...prevNote];
-//       a.shift();
-//       console.log(a);
-//       return a;
-//     });
-//   } else {
-//     console.log(input);
-//     setWrongInput(input);
-//   }
-// }, [input, notes]);

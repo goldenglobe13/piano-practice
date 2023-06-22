@@ -5,8 +5,142 @@
   margin: 0rem auto;
   overflow: hidden;
   padding: 1rem;
-  padding-left: 3rem;
   margin-top: 1rem;
+  transition: all 1s;
+}
+
+.roll-container {
+  max-width: 60%;
+  border-radius: 1rem;
+  background-color: #fff;
+  margin: 0rem auto;
+  overflow: hidden;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.keys-container {
+  max-width: 80%;
+  height: 12rem;
+  margin: 0rem auto;
+  position: relative;
+}
+
+button.white-key.key {
+  border: 2px solid #000;
+  background-color: #fff;
+  width: 14.28%;
+  height: 12rem;
+  box-shadow: 2px 2px 0px 1px #333;
+  position: absolute;
+  top: 0%;
+}
+button.white-key.key:hover {
+  transform: scale(0.99);
+}
+
+button.black-key.key {
+  width: 10%;
+  height: 8rem;
+  background-color: #000;
+  box-shadow: 1px 1px 0px 2px #333;
+  position: absolute;
+  top: 0%;
+  z-index: 1;
+}
+
+button.black-key.key:hover {
+  transform: scale(0.99);
+}
+
+button.key {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+button.black-key.key {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+.key span {
+  display: block;
+}
+
+#c {
+  left: 0%;
+}
+
+#cs {
+  left: 9%;
+}
+
+#d {
+  left: 14%;
+}
+
+#ds {
+  left: 23%;
+}
+
+#e {
+  left: 28%;
+}
+
+#f {
+  left: 42%;
+}
+
+#fs {
+  left: 50%;
+}
+
+#g {
+  left: 56%;
+}
+
+#gs {
+  left: 65%;
+}
+
+#a {
+  left: 70%;
+}
+
+#as {
+  left: 79%;
+}
+
+#b {
+  left: 84%;
+}
+
+.note-container {
+  animation-name: inAnimation;
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+    scale: 1;
+  }
+  50% {
+    opacity: 0;
+    scale: 3;
+  }
+  100% {
+    /* transform: translateX(0rem); */
+    opacity: 100;
+    scale: 1;
+  }
 }
 
 .container {
@@ -40,7 +174,7 @@
   letter-spacing: 0.5rem;
   font-family: "Press Start 2P", sans-serif;
   background-color: #000000;
-  transition: all 0.3s;
+  transition: transform 0.3s;
 }
 
 .start-btn:hover {
@@ -49,6 +183,14 @@
   color: #000000;
   border: 5px solid #000000;
   transform: scale(0.95);
+}
+
+.start-btn:hover.outAnimation,
+.start-btn.outAnimation {
+  transition: transform 0.6s;
+  background-color: transparent;
+  color: #000000;
+  transform: scale(100);
 }
 
 .note-eighth {

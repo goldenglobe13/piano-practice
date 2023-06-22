@@ -74,12 +74,10 @@ const Input = (props) => {
   let classes = [];
   let lines_classes = [];
   if (props.input !== " ") {
-    console.log(props.input);
     const t = dummy_classes.filter(
       (item) => props.input * 1 === item.code * 1
     )[0];
     r.style.setProperty("--code_wrong", `${t.top}%`);
-    console.log(t);
     classes.push(t.class);
     lines_classes.push(t.lines);
   } else {
@@ -87,9 +85,6 @@ const Input = (props) => {
     classes.push("no-disp");
     lines_classes.push(" ");
   }
-
-  console.log(classes);
-  console.log(lines_classes);
 
   return (
     <Fragment>
