@@ -58,7 +58,7 @@ function App() {
 
     let initial_notes = [];
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 10; i++) {
       if (i === 0) {
         initial_notes.push(
           sliced_notes[Math.floor(Math.random() * sliced_notes.length)]
