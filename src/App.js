@@ -207,7 +207,7 @@ function App() {
             onClick={timerStart}
             onTransitionEnd={handleAnimationEnd}
           >
-            {startIndex === true ? "Start!" : "Play Again"}
+            {startIndex ? "Start!" : "Play Again"}
           </button>
         )}
       </div>
