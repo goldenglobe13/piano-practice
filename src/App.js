@@ -44,11 +44,12 @@ function App() {
   const [index, setIndex] = useState([0, 1, 2, 3]);
   const [input, setInput] = useState("");
   const [startTime, setStartTime] = useState("");
-  const [start, setStart] = useState("");
+  const [start, setStart] = useState(false);
   const [stop, setStop] = useState(false);
   const [newGame, setNewGame] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
   const [showDiv, setShowDiv] = useState(false);
+  const [startIndex, setStartIndex] = useState(true);
 
   useEffect(() => {
     const notes_all = Array(128)
@@ -58,7 +59,7 @@ function App() {
 
     let initial_notes = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 1; i++) {
       if (i === 0) {
         initial_notes.push(
           sliced_notes[Math.floor(Math.random() * sliced_notes.length)]
@@ -98,7 +99,6 @@ function App() {
   const handleAnimationEnd = () => {
     if (start) {
       setShowDiv(true);
-
       setTimeout(() => {
         setStartTime(Date.now());
       }, 200);
@@ -125,7 +125,8 @@ function App() {
       console.log(input);
       if (notes.length === 1) {
         setStop(true);
-
+        setStart(false);
+        setShowDiv(false);
         setAnimationClass("");
       }
       console.log(Date.now() - start);
@@ -162,19 +163,20 @@ function App() {
   // };
 
   const timerStart = () => {
+    if (!startIndex) {
+      setNewGame((prevNewGame) => {
+        return !prevNewGame;
+      });
+    }
     setAnimationClass("outAnimation");
     setStop(false);
     setStart(true);
+    setStartIndex(false);
+    setStartTime("");
 
     console.log(`timerStart: ${Date.now()}`);
   };
 
-  const playAgain = () => {
-    setNewGame((prevNewGame) => {
-      return !prevNewGame;
-    });
-    timerStart();
-  };
   // const timerStop = () => {
   //   setStop(true);
   // };
@@ -190,7 +192,7 @@ function App() {
     <div>
       <Timer start={startTime} stop={stop} />
       <div className="big-container">
-        {showDiv && !stop && (
+        {showDiv && (
           <div className="note-container">
             <div>
               {/* <img className="joint" src="Accolade_fermante.png" alt="Accolade" /> */}
@@ -205,16 +207,7 @@ function App() {
             onClick={timerStart}
             onTransitionEnd={handleAnimationEnd}
           >
-            Start!
-          </button>
-        )}
-        {stop && (
-          <button
-            className={`start-btn ${animationClass}`}
-            onClick={playAgain}
-            onTransitionEnd={handleAnimationEnd}
-          >
-            PLAY AGAIN
+            {startIndex === true ? "Start!" : "Play Again"}
           </button>
         )}
       </div>
