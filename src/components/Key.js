@@ -34,16 +34,8 @@ const Key = (props) => {
       const keyPressed = keyboardList.filter(
         (item) => item.keyCode === event.keyCode
       )[0].note;
-      console.log(keyPressed);
-      clickHandler(event, keyPressed);
+      clickHandler([], keyPressed);
     }
-
-    // const add = keyboardList.filter((item) => item.keyCode === event.keyCode)[0]
-    //   .add;
-
-    // const inputs = baseKeys.map((item) => item + add);
-    // console.log(inputs);
-    // props.inputs(inputs);
   };
 
   useEffect(() => {
