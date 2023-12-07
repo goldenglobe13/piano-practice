@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo } from "react";
+import { Fragment, useEffect } from "react";
 
 const keyboardList = [
   { note: "c", add: 0, keyCode: 65 },

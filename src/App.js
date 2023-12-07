@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import NoteSheet from "./components/NoteSheet";
 import Midi from "./components/Midi";
 import Timer from "./components/Timer";

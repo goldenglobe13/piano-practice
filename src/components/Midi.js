@@ -49,6 +49,8 @@ const Midi = (props) => {
       case 128:
         noteOff(note);
         break;
+      default:
+        break;
     }
   };
   if (navigator.requestMIDIAccess) {
