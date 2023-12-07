@@ -594,8 +594,8 @@ ion-icon {
     max-width: 100%;
   }
   .g-clef {
-    font-size: calc(var(--height-custom-m) * 0.3);
-    top: calc(var(--height-custom-m) * 0.16);
+    font-size: 15vh;
+    top: 8vh;
   }
   .first {
     left: 35%;
