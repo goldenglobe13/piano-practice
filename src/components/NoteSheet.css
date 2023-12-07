@@ -584,8 +584,8 @@ ion-icon {
   .big-container {
     max-width: 95vw;
     --width-custom: 95vw;
-    height: 50%;
-    --height-custom: 50%;
+    height: 50vh;
+    --height-custom: 50vh;
   }
   .roll-container {
     max-width: 95%;
@@ -635,10 +635,12 @@ ion-icon {
 
   .sharp::before {
     left: -0.2em;
+    font-size: calc(var(--height-custom) * 0.2);
   }
 
   .rotate.sharp::before {
     left: 0.55em;
+    font-size: calc(var(--height-custom) * 0.2);
   }
 
   .lines_t {
