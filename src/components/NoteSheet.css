@@ -666,4 +666,8 @@ ion-icon {
   .lines_t.no-container {
     left: 33%;
   }
+
+  button.black-key.key {
+    padding: 1rem 1.2rem;
+  }
 }
