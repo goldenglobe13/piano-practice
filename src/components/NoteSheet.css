@@ -585,7 +585,7 @@ ion-icon {
     max-width: 95vw;
     --width-custom: 95vw;
     height: 50vh;
-    --height-custom-m: 50vh;
+    --height-custom: 50vh;
   }
   .roll-container {
     max-width: 95%;
