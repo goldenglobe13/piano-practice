@@ -150,7 +150,6 @@ const NoteSheet = (props) => {
       {/* {props.clef === "f" && <div className="f-clef">𝄢</div>} */}
       {props.clef === "f" && (
         <div className="bass_clef">
-          {" "}
           <img
             className="bass_clef"
             src="noun-bass-clef-501763.png"
@@ -172,21 +171,25 @@ const NoteSheet = (props) => {
         <div className="lines_t"></div>
       </div> */}
       {/* <div className="sharp">♯</div> */}
+
       <NoteItem
         className={`${classes[0]}`}
         classes={classes[0]}
         lineClasses={lines_classes[0]}
       />
+
       <NoteItem
         className={`${classes[1]}`}
         classes={classes[1]}
         lineClasses={lines_classes[1]}
       />
+
       <NoteItem
         className={`${classes[2]}`}
         classes={classes[2]}
         lineClasses={lines_classes[2]}
       />
+
       <NoteItem
         className={`${classes[3]}`}
         classes={classes[3]}

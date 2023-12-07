@@ -1,22 +1,34 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .big-container {
-  max-width: 60%;
+  max-width: 70vw;
+  --width-custom: 70vw;
+  height: 25rem;
+  height: 55vh;
+  --height-custom: 55vh;
   border-radius: 1rem;
   background-color: #fff;
   margin: 0rem auto;
+  /* margin-top: 0.5rem; */
+  margin-top: calc(0.02 * var(--height-custom));
   overflow: hidden;
-  padding: 1rem;
-  margin-top: 1rem;
+  /* padding: 1rem; */
+  padding: calc(0.04 * var(--height-custom));
   transition: all 1s;
 }
 
 .roll-container {
-  max-width: 60%;
+  max-width: 70%;
   border-radius: 1rem;
   background-color: #fff;
   margin: 0rem auto;
+  margin-top: 0.5rem;
   overflow: hidden;
   padding: 1rem;
-  margin-top: 1rem;
 }
 
 .keys-container {
@@ -122,6 +134,11 @@ button.black-key.key {
 }
 
 .note-container {
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: relative;
   animation-name: inAnimation;
   animation-duration: 200ms;
   animation-timing-function: ease-in-out;
@@ -145,8 +162,8 @@ button.black-key.key {
 
 .container {
   max-width: 100%;
-  height: 17rem;
-  margin: 3rem auto;
+  height: 100%;
+  /* height: 36vh; */
   position: relative;
 }
 
@@ -156,7 +173,8 @@ button.black-key.key {
   width: 18rem;
   background-color: rgb(255, 255, 255);
   border-radius: 0.5rem;
-  margin: 1rem auto;
+  margin: 0rem auto;
+  margin-top: 0.5rem;
   letter-spacing: 0rem;
   line-height: 4rem;
   font-size: 2rem;
@@ -167,7 +185,7 @@ button.black-key.key {
 .start-btn {
   display: block;
   width: 20rem;
-  height: 5rem;
+  padding: 1rem 0;
   border-radius: 1rem;
   margin: 9rem auto;
   font-size: 2rem;
@@ -196,9 +214,14 @@ button.black-key.key {
 
 .note-eighth {
   font-size: 6rem;
+  font-size: calc(var(--height-custom) * 0.2);
+  width: fit-content;
+  width: -moz-fit-content;
+  width: calc(var(--width-custom) * 0.1);
+  text-align: center;
   position: absolute;
   transition: all 0.8s;
-  top: 10%;
+  top: 15%;
   left: 0%;
 }
 
@@ -216,19 +239,7 @@ button.black-key.key {
   height: 100%;
   z-index: 0;
   width: 20%;
-
-  /* 
- 
-  top: 0%;
-  z-index: 0; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 }
-
-/* background-color: rgba(0, 255, 255, 0.304);
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 5px 1px rgb(0, 255, 255); */
 
 .lines_t.first-container {
   left: 20%;
@@ -250,7 +261,8 @@ button.black-key.key {
 }
 
 .no-container {
-  left: 15%;
+  left: 20%;
+  top: 0%;
   background-color: rgba(0, 255, 255, 0.304);
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px 1px rgb(0, 255, 255);
@@ -264,9 +276,10 @@ ion-icon {
 }
 
 .g-clef {
-  font-size: 11rem;
-  position: absolute;
-  top: -5%;
+  /* font-size: 11rem; */
+  font-size: calc(var(--height-custom) * 0.3);
+  position: relative;
+  top: calc(var(--height-custom) * 0.16);
   left: 0%;
 }
 
@@ -301,28 +314,28 @@ ion-icon {
 } */
 
 .first {
-  left: 10.5rem;
-  top: var(--code_first);
+  left: 20%;
+  top: calc(15.5% + (var(--code_first) / 2));
 }
 
 .second {
-  left: 21.5rem;
-  top: var(--code_second);
+  left: 40%;
+  top: calc(15.5% + (var(--code_second) / 2));
 }
 
 .third {
-  left: 32rem;
-  top: var(--code_third);
+  left: 60%;
+  top: calc(15.5% + (var(--code_third) / 2));
 }
 
 .fourth {
-  left: 42.5rem;
-  top: var(--code_fourth);
+  left: 80%;
+  top: calc(15.5% + (var(--code_fourth) / 2));
 }
 
 .wrong {
   left: 20%;
-  top: var(--code_wrong);
+  top: calc(15.5% + (var(--code_wrong) / 2));
   color: rgba(199, 199, 199, 0.738);
 }
 
@@ -331,15 +344,39 @@ ion-icon {
   top: 40%;
 }
 
-.sharp::after {
+.sharp::before {
   content: "#";
   position: absolute;
-  top: 40%;
-  left: 60%;
-  font-size: 4rem;
+  top: 25%;
+  left: -0.2em;
+  font-size: calc(var(--height-custom) * 0.2);
 }
 
-.rotate {
+.rotate.sharp::before {
+  content: "#";
+  position: absolute;
+  top: 25%;
+  left: 55%;
+  font-size: 4rem;
+  font-size: calc(var(--height-custom) * 0.2);
+}
+
+.rotate.first {
+  transform-origin: 50% 78%;
+  transform: rotate(180deg);
+}
+
+.rotate.second {
+  transform-origin: 50% 78%;
+  transform: rotate(180deg);
+}
+
+.rotate.third {
+  transform-origin: 50% 78%;
+  transform: rotate(180deg);
+}
+
+.rotate.fourth {
   transform-origin: 50% 78%;
   transform: rotate(180deg);
 }
@@ -426,9 +463,9 @@ ion-icon {
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(30% - 0.8px),
-      rgba(0, 0, 0, 1) 30%,
-      rgba(0, 0, 0, 0) calc(30% + 0.8px),
+      rgba(0, 0, 0, 0) calc(35% - 0.8px),
+      rgba(0, 0, 0, 1) 35%,
+      rgba(0, 0, 0, 0) calc(35% + 0.8px),
       rgba(0, 0, 0, 0) 100%
     ),
     linear-gradient(
@@ -442,6 +479,14 @@ ion-icon {
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) calc(45% - 0.8px),
+      rgba(0, 0, 0, 1) 45%,
+      rgba(0, 0, 0, 0) calc(45% + 0.8px),
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) calc(50% - 0.8px),
       rgba(0, 0, 0, 1) 50%,
       rgba(0, 0, 0, 0) calc(50% + 0.8px),
@@ -450,17 +495,9 @@ ion-icon {
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(60% - 0.8px),
-      rgba(0, 0, 0, 1) 60%,
-      rgba(0, 0, 0, 0) calc(60% + 0.8px),
-      rgba(0, 0, 0, 0) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(70% - 0.8px),
-      rgba(0, 0, 0, 1) 70%,
-      rgba(0, 0, 0, 0) calc(70% + 0.8px),
+      rgba(0, 0, 0, 0) calc(55% - 0.8px),
+      rgba(0, 0, 0, 1) 55%,
+      rgba(0, 0, 0, 0) calc(55% + 0.8px),
       rgba(0, 0, 0, 0) 100%
     ),
     #fff;
@@ -471,9 +508,9 @@ ion-icon {
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(30% - 0.8px),
-      rgba(0, 0, 0, 0.8) 30%,
-      rgba(0, 0, 0, 0) calc(30% + 0.8px),
+      rgba(0, 0, 0, 0) calc(35% - 0.8px),
+      rgba(0, 0, 0, 0.8) 35%,
+      rgba(0, 0, 0, 0) calc(35% + 0.8px),
       rgba(0, 0, 0, 0) 100%
     ),
     linear-gradient(
@@ -487,6 +524,14 @@ ion-icon {
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) calc(45% - 0.8px),
+      rgba(0, 0, 0, 0.8) 45%,
+      rgba(0, 0, 0, 0) calc(45% + 0.8px),
+      rgba(0, 0, 0, 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) calc(50% - 0.8px),
       rgba(0, 0, 0, 0.8) 50%,
       rgba(0, 0, 0, 0) calc(50% + 0.8px),
@@ -495,49 +540,124 @@ ion-icon {
     linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(60% - 0.8px),
-      rgba(0, 0, 0, 0.8) 60%,
-      rgba(0, 0, 0, 0) calc(60% + 0.8px),
-      rgba(0, 0, 0, 0) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) calc(70% - 0.8px),
-      rgba(0, 0, 0, 0.8) 70%,
-      rgba(0, 0, 0, 0) calc(70% + 0.8px),
+      rgba(0, 0, 0, 0) calc(55% - 0.8px),
+      rgba(0, 0, 0, 0.8) 55%,
+      rgba(0, 0, 0, 0) calc(55% + 0.8px),
       rgba(0, 0, 0, 0) 100%
     );
-  width: 10%;
-  height: 100%;
+  width: calc(var(--width-custom) * 0.1);
+  height: calc(var(--height-custom) * 0.92);
   position: absolute;
-  left: 20%;
+  top: 1000%;
   border-radius: 0;
   box-shadow: none;
   z-index: 3;
 }
 
 .one-a {
-  top: -10%;
+  top: -5%;
 }
 .two-a {
-  top: -20%;
+  top: -10%;
 }
 .three-a {
-  top: -30%;
+  top: -15%;
 }
 .four-a {
-  top: -40%;
+  top: -20%;
 }
 .one-b {
-  top: 10%;
+  /* top: calc(var(--height-custom) * 0.92 * 0.275); */
+  top: 5%;
 }
 .two-b {
-  top: 20%;
+  top: 10%;
 }
 .three-b {
-  top: 30%;
+  top: 15%;
 }
 .four-b {
-  top: 40%;
+  top: 20%;
+}
+
+@media screen and (max-width: 450px) {
+  .big-container {
+    max-width: 90vw;
+    --width-custom: 90vw;
+  }
+  .roll-container {
+    max-width: 90%;
+  }
+  .keys-container {
+    max-width: 100%;
+  }
+  .first {
+    left: 35%;
+  }
+
+  .second {
+    left: 75%;
+  }
+
+  .third {
+    left: 115%;
+  }
+
+  .fourth {
+    left: 160%;
+  }
+
+  .wrong {
+    left: 35%;
+  }
+
+  .rotate.first {
+    left: 40%;
+  }
+
+  .rotate.second {
+    left: 80%;
+  }
+
+  .rotate.third {
+    left: 120%;
+  }
+
+  .rotate.fourth {
+    left: 160%;
+  }
+
+  .rotate.wrong {
+    left: 40%;
+  }
+
+  .sharp::before {
+    left: -0.2em;
+  }
+
+  .rotate.sharp::before {
+    left: 0.55em;
+  }
+
+  .lines_t {
+    width: 20%;
+  }
+
+  .lines_t.first-container {
+    left: 33%;
+  }
+
+  .lines_t.second-container {
+    left: 73%;
+  }
+
+  .lines_t.third-container {
+    left: 113%;
+  }
+  .lines_t.fourth-container {
+    left: 153%;
+  }
+  .lines_t.no-container {
+    left: 33%;
+  }
 }
